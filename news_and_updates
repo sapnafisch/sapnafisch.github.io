@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News & Updates</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #FAFAF8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #2c2c2a; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 28px 40px;
+    display: flex; align-items: baseline; gap: 48px;
+    z-index: 10;
+    background: #4a1220;
+  }
+  nav a {
+    color: #e8d8d8;
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    font-family: Georgia, serif;
+  }
+  nav a:hover { color: #fff; }
+  nav .name { font-size: 18px; font-weight: 700; }
+
+  .news-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 100px 1rem 60px;
+  }
+  .news-title {
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #4a1220;
+    margin-bottom: 36px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #4a1220;
+  }
+
+  .news-item {
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(74,18,32,0.08);
+  }
+  .news-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .news-date {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #4a1220;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+  .news-headline {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c2c2a;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  .news-headline a {
+    color: #4a1220;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(74,18,32,0.3);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .news-headline a:hover {
+    color: #2c2c2a;
+    border-bottom-color: #2c2c2a;
+  }
+  .news-body {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #73726c;
+  }
+  .news-body em {
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="name">Sapna</a>
+  <a href="research.html">Research</a>
+  <a href="publications.html">Publications</a>
+  <a href="news.html">News</a>
+</nav>
+
+<div class="news-section">
+  <div class="news-title">News & Updates</div>
+
+  <div class="news-item">
+    <div class="news-date">March 17, 2026</div>
+    <div class="news-headline"><a href="https://www.linkedin.com/posts/termeer-institute_today-the-termeer-institute-is-bringing-activity-7439649329465851904-inGs" target="_blank" rel="noopener">Termeer Institute Event — Reflections on Leadership Legacy</a></div>
+    <div class="news-body">
+      <p>Another excellent event organized by the Termeer Institute, bringing together leaders in biotech, startups, and conversations on what it takes to build something meaningful in medicine.</p>
+      <br>
+      <p>But the thing that stuck with me the most wasn't the panel or fireside chats. It was noticing and getting to know all the people in that room who had worked with Henri Termeer — <em>decades</em> ago!! And they were still at it. Still building. Still showing up and doing remarkable things across the industry.</p>
+      <br>
+      <p>And it made me think about what leadership legacy actually looks like: with the people who carry your values forward into their own career trajectories, their own teams, their own decisions — long after they've moved on.</p>
+      <br>
+      <p>Henri built an amazing company, but maybe the more enduring thing he built was a generation of people who understood what it meant to do the work that mattered, and went out and did more of it. The impact compounds in ways you can't measure.</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
