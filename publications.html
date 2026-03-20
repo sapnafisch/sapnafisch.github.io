@@ -5,46 +5,352 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Publications</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: Georgia, serif; background: #FAFAF8; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #FAFAF8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #2c2c2a; }
 
-nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  padding: 28px 40px;
-  display: flex; align-items: baseline; gap: 48px;
-  z-index: 10;
-  background: #4a1220;
-}
-nav a {
-  color: #e8d8d8;
-  text-decoration: none;
-  font-size: 15px;
-  letter-spacing: 0.5px;
-}
-nav a:hover { color: #fff; }
-nav .name {
-  font-size: 18px;
-  font-weight: 700;
-}
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 28px 40px;
+    display: flex; align-items: baseline; gap: 48px;
+    z-index: 10;
+    background: #4a1220;
+  }
+  nav a {
+    color: #e8d8d8;
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    font-family: Georgia, serif;
+  }
+  nav a:hover { color: #fff; }
+  nav .name { font-size: 18px; font-weight: 700; }
 
-main {
-  padding: 100px 40px 60px;
-  color: #73726c;
-  font-size: 15px;
-}
+  .pub-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 100px 1rem 60px;
+  }
+  .pub-title {
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #4a1220;
+    margin-bottom: 6px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #4a1220;
+  }
+  .pub-note {
+    font-size: 13.5px;
+    color: #73726c;
+    font-style: italic;
+    margin-bottom: 36px;
+    padding-top: 8px;
+  }
+  .pub-year-group {
+    display: flex;
+    gap: 0;
+  }
+  .pub-year {
+    width: 80px;
+    flex-shrink: 0;
+    font-family: Georgia, serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #4a1220;
+    padding-top: 16px;
+    position: relative;
+  }
+  .pub-year::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #4a1220;
+    opacity: 0.25;
+  }
+  .pub-year-dot {
+    position: absolute;
+    right: -5px;
+    top: 24px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #4a1220;
+    border: 2px solid #FAFAF8;
+  }
+  .pub-list {
+    flex: 1;
+    padding-left: 28px;
+    padding-top: 10px;
+    padding-bottom: 24px;
+  }
+  .pub-item {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: #73726c;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(74,18,32,0.08);
+  }
+  .pub-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .pub-item-title {
+    font-weight: 600;
+    color: #2c2c2a;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .pub-venue {
+    font-style: italic;
+    color: #9c9a92;
+    font-size: 13.5px;
+  }
+  .me {
+    font-weight: 700;
+    color: #2c2c2a;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media (max-width: 600px) {
+    .pub-year { width: 56px; font-size: 18px; }
+    .pub-list { padding-left: 18px; }
+    .pub-item { font-size: 13.5px; }
+  }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="name">Sapna</a>
+  <a href="index.html" class="name">Sapna Sinha</a>
   <a href="research.html">Research</a>
   <a href="publications.html">Publications</a>
 </nav>
 
-<main>
-  <p>Publications content goes here.</p>
-</main>
+<div class="pub-section">
+  <div class="pub-title">Publications</div>
+  <div class="pub-note">(*equal contribution; †co-corresponding authorship)</div>
 
+  <!-- 2025 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2025<div class="pub-year-dot"></div></div>
+    <div class="pub-list">
+      <div class="pub-item">
+        <span class="pub-item-title">Small Particles, Big Impact: a Call for Action to Integrate Nanotechnologies for Solving Alzheimers.</span>
+        Rebecca Pinals*†, <span class="me">Sapna Sinha*†</span>, Miyoung Chun, Robert Langer, Edward Boyden†, Li-Huei Tsai†.
+        <span class="pub-venue">(Submitting to a journal)</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">Designing proteins with reduced T-cell epitopes through policy optimization.</span>
+        Ponnapati M.*, <span class="me">Sinha S.*</span>, Lynch B., Jacobson J, Boyden E.S.
+        <span class="pub-venue">(bioRxiv 2025.09.27.678937v, accepted at MLSB 2025 conference, Submitting to a journal)</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">Screening channelrhodopsins using robotic intracellular electrophysiology and single cell sequencing.</span>
+        Samuel Ehrlich, Alexandra VandeLoo, Mohamed Badawy, M. Gonzalez, M. Stockslager, Amy Yang, <span class="me">Sinha S.</span>, Bracha S., Park D., B. Magondu, B. Yang, Boyden E.S., Forest C.
+        <span class="pub-venue">(bioRxiv 2025.08.19.671087, Submitted, J. of Neuroscience Methods)</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">Four-Fold Expansion Microscopy of Cultured Cells.</span>
+        Swain S., <span class="me">Sinha S.</span>, Boyden ES.
+        <span class="pub-venue">(to be submitted)</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">CAMP: Combinatorial Engineering of Proteins.</span>
+        <span class="me">Sinha S.*</span>, Manvitha Ponnapathi*, Brian Lynch, Jacobson J, Boyden E.S.
+        <span class="pub-venue">Accepted at ICLR 2025 Workshop on Generative and Experimental Perspectives for Biomolecular Design; Patent Disclosure Filed (63/794,433)</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">System and method for long-term expression of molecules for optogenetic therapies of the peripheral nervous system.</span>
+        <span class="me">Sinha S.</span>, Herrera G.A., Park D., Min D., Mody S., Huang J., Herr H., Boyden E.S.
+        <span class="pub-venue">The Journal of Immunology 214, Issue Supplement 1, 2025. Patent Disclosure Filed 63/800,399</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">A fatigue-resistant myoneural actuator for implantable biohybrid systems.</span>
+        Song H., Herrera-Arcos G., Friedman GS., Yeon SH., He C., Gutierrez-Arango S., <span class="me">Sinha S.</span>, Herr H.M.
+        <span class="pub-venue">(bioRxiv, 2025.03.14.642606 &amp; Submitted to Nature Biomedical Engineering, under revision)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2024 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2024<div class="pub-year-dot"></div></div>
+    <div class="pub-list">
+      <div class="pub-item">
+        <span class="pub-item-title">Closed-loop optogenetic neuromodulation enables high-fidelity fatigue-resistant muscle control.</span>
+        Herrera-Arcos G., Song H., Yeon H.S., Ghenand O., Gutierrez-Arango S., <span class="me">Sinha S.</span>, Herr H.M.
+        <span class="pub-venue">Science Robotics, 9(90), 2024.</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">Process Parameters Optimization for Endohedral Metallofullerene Synthesis via the Arc-Discharge Method.</span>
+        <span class="me">Sinha S.†</span>, Sanfo K., Dallas P., Kumar S., Porfyrakis K.†
+        <span class="pub-venue">Inorganics, 12(2), 38, 2024.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2023 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2023<div class="pub-year-dot"></div></div>
+    <div class="pub-list">
+      <div class="pub-item">
+        <span class="pub-item-title">Self-Reconstruction of Single-Atom-Thick A Layers in Nanolaminated MAX Phases for Enhanced Oxygen Evolution.</span>
+        Hu C., Dong H., Li Y., <span class="me">Sinha S.</span>, Wang C., Xu W., Song L., Suenaga K., Geng H., Wang J., Huang Q., Tan Y., Huang X.
+        <span class="pub-venue">Advanced Functional Materials, 33, 2211530, 2023.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2022 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2022<div class="pub-year-dot"></div></div>
+    <div class="pub-list">
+      <div class="pub-item">
+        <span class="pub-item-title">Lattice Mismatch Driven Small Angle Moiré Twists in Epitaxially-Grown 2D Vertical Layered Heterostructures.</span>
+        Lu Y., Chen J., Coupin M.J., <span class="me">Sinha S.</span>, Warner J.H.
+        <span class="pub-venue">Advanced Materials, 2205403, 2022.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2021 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2021<div class="pub-year-dot"></div></div>
+    <div class="pub-list">
+      <div class="pub-item">
+        <span class="pub-item-title">Preparation and application of 0D-2D nanomaterial hybrid heterostructures for energy applications.</span>
+        <span class="me">Sinha S.†</span>, Kim H., Robertson A.†
+        <span class="pub-venue">Materials Today Advances, 12, 100169, 2021.</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">In-situ TEM observation of the growth process of carbon nanomaterials by laser irradiation.</span>
+        Senga R., Lin Y.-C., <span class="me">Sinha S.</span>, Kaneko T., Okoshi N., Sasaki T., Morishita S., Sawada H., Park S.T., Suenaga K.
+        <span class="pub-venue">Microscopy &amp; Microanalysis, 27 (S1), 2344, 2021.</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">Recent progress in the applications for graphene as a transparent support for electron microscopy.</span>
+        <span class="me">Sinha S.†</span>, Warner J.†
+        <span class="pub-venue">Small Structures, 2, 2000049, 2021.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2020 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2020<div class="pub-year-dot"></div></div>
+    <div class="pub-list">
+      <div class="pub-item">
+        <span class="pub-item-title">Atomic Structural Studies of Graphene Interfaces with 0 and 2D Materials.</span>
+        <span class="me">Sinha S.</span>
+        <span class="pub-venue">PhD thesis, University of Oxford, 2020.</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">Structure and Defect Dynamics of 2D Monolayer Lead Iodide Nanodisks with Epitaxial Alignment on Graphene.</span>
+        <span class="me">Sinha S.</span>, Zhu T., Frances-Lanord A., Sheng Y., Grossman J.C., Porfyrakis K., Warner J.H.
+        <span class="pub-venue">Nature Communications, 11 (823), 2020.</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">Chapter 16: Magnetic properties of Endohedral Fullerenes: Applications and Perspectives.</span>
+        Dallas P., Harding R., Cornes S., Sinha S., Zhou S., Rašović I., Laird E., Porfyrakis K.
+        <span class="pub-venue">21st Century Nanoscience – A Handbook (Volume Four), CRC Press, 1st Edition, 2020.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2019 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2019<div class="pub-year-dot"></div></div>
+    <div class="pub-list">
+      <div class="pub-item">
+        <span class="pub-item-title">Laser Induced Transformation of PdSe2 for On Demand Device Fabrication.</span>
+        Shautsova V., <span class="me">Sinha S.</span>, Hou L., Zhang Q., Tweedie M., Lu Y., Sheng Y., Porter B.F., Bhaskaran H., Warner J.H.
+        <span class="pub-venue">ACS Nano, 13, 14162, 2019.</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">Striated 2D Lattice with Sub-nm 1D Etch Channels by Controlled Thermally Induced Phase Transformations of PdSe2.</span>
+        Ryu G.H., Zhu T., Chen J., <span class="me">Sinha S.</span>, Shautsova V., Grossman J.C., Warner J.H.
+        <span class="pub-venue">Advanced Materials, 31, 1904251, 2019.</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">Strong Opto-structural coupling in low dimensional GeSe3 films.</span>
+        Sarwat S.G., Cheng Z., Youngblood N., Alias M.S., <span class="me">Sinha S.</span>, Warner J., Bhaskaran H.
+        <span class="pub-venue">Nano Letters, 19 (10), 7377, 2019.</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">Atomic Structure and Dynamics of Defects and Grain Boundaries in 2D Pd2Se3 Monolayers.</span>
+        Chen J., Ryu G.H., <span class="me">Sinha S.</span>, Warner J.H.
+        <span class="pub-venue">ACS Nano, 13 (7), 8256, 2019.</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">High Performance WS2 Monolayer Light Emitting Tunneling Devices using 2D Materials Grown by Chemical Vapor Deposition.</span>
+        Sheng Y., Chen T., Lu Y., Chang R-J., <span class="me">Sinha S.</span>, Warner J.H.
+        <span class="pub-venue">ACS Nano, 13 (4), 4530, 2019.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2018 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2018<div class="pub-year-dot"></div></div>
+    <div class="pub-list">
+      <div class="pub-item">
+        <span class="pub-item-title">In Situ Atomic-Level Studies of Gd Atom Release and Migration on Graphene from a Metallofullerene Precursor.</span>
+        <span class="me">Sinha S.</span>, Sheng Y., Griffiths I., Young N.P., Zhou S., Kirkland A.I., Porfyrakis K., Warner J.H.
+        <span class="pub-venue">ACS Nano, 12 (10), 10439, 2018.</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">Are Buckminsterfullerenes "Molecular Ball Bearings"?</span>
+        Lhermerout R., Diederichs C., <span class="me">Sinha S.</span>, Porfyrakis K., Perkin S.
+        <span class="pub-venue">Journal of Physical Chemistry B, 123 (1), 310, 2018.</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">Direct Imaging of Photoswitching Molecular Conformations Using Individual Metal Atom Markers.</span>
+        Gerkman M., <span class="me">Sinha S.</span>, Warner J.H., Han G.G.D.
+        <span class="pub-venue">ACS Nano, 13 (1), 87, 2018.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2016 -->
+  <div class="pub-year-group">
+    <div class="pub-year">2016<div class="pub-year-dot"></div></div>
+    <div class="pub-list">
+      <div class="pub-item">
+        <span class="pub-item-title">Simple fabrication of air-stable black phosphorus heterostructures with large-area hBN sheets grown by chemical vapor deposition method.</span>
+        <span class="me">Sinha S.</span>, Takabayashi Y., Shinohara H., Ryo K.
+        <span class="pub-venue">2D Materials, 3, 035010, 2016.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- In preparation -->
+  <div class="pub-year-group">
+    <div class="pub-year" style="font-size:17px;">In prep<div class="pub-year-dot"></div></div>
+    <div class="pub-list">
+      <div class="pub-item">
+        <span class="pub-item-title">Template-oriented molten salts synthesis of ruthenium oxide nanorods for proton-exchange-membrane water electrolysis.</span>
+        Hu C., Wang Z., Liu L., <span class="me">Sinha S.</span>, Suenaga K., Huang J., Zhao X., Wang J., Huang F.
+        <span class="pub-venue">(submitted)</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">Environmentally stable single phosphorene atoms chains inside single walled carbon nanotubes.</span>
+        <span class="me">Sinha S.†</span>, Senga R., Lin Y-C., Koshino M., Suenaga K.
+        <span class="pub-venue">(in preparation)</span>
+      </div>
+      <div class="pub-item">
+        <span class="pub-item-title">Direct synthesis and characterization of freestanding two-dimensional monolayer silica.</span>
+        <span class="me">Sinha S.†*</span>, Lin Y-C.*, Senga R., Koshino M., Suenaga K.†
+        <span class="pub-venue">(in prep, manuscript available on query)</span>
+      </div>
+    </div>
+  </div>
+
+</div>
 </body>
 </html>
