@@ -17,38 +17,54 @@
   body { background: var(--bg); }
   .kdm-wrap {
     width: 100%;
-    max-width: 960px;
+    max-width: 1100px;
     margin: 0 auto;
     font-family: 'Caveat', cursive;
     padding: 1rem;
   }
-  canvas { display: block; width: 100%; cursor: grab; border-radius: 12px; }
-  canvas:active { cursor: grabbing; }
-  .kdm-legend {
+  .kdm-hint {
+    font-size: 15px;
+    color: var(--tx3);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .kdm-main {
     display: flex;
-    flex-wrap: wrap;
-    gap: 4px 16px;
-    padding: 10px 0 4px;
-    font-size: 16px;
-    color: var(--tx2);
+    gap: 0;
+    align-items: stretch;
+  }
+  .kdm-sidebar {
+    width: 200px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-right: 16px;
+    border-right: 1px solid var(--bd);
   }
   .kdm-li {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     cursor: pointer;
-    transition: opacity 0.15s;
+    transition: opacity 0.15s, background 0.15s;
     user-select: none;
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    color: var(--tx2);
   }
-  .kdm-li:hover { opacity: 0.8; }
-  .kdm-li.dim { opacity: 0.25; }
+  .kdm-li:hover { background: rgba(0,0,0,0.03); }
+  .kdm-li.active { background: rgba(0,0,0,0.05); font-weight: 600; color: var(--tx); }
+  .kdm-li.dim { opacity: 0.3; }
   .kdm-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .kdm-hint {
-    font-size: 15px;
-    color: var(--tx3);
-    margin-top: 6px;
-    line-height: 1.5;
+  .kdm-graph {
+    flex: 1;
+    position: relative;
+    min-width: 0;
   }
+  canvas { display: block; width: 100%; cursor: grab; border-radius: 12px; }
+  canvas:active { cursor: grabbing; }
   #kdm-tip {
     position: absolute;
     pointer-events: none;
@@ -67,29 +83,45 @@
   #kdm-tip b { font-weight: 700; font-size: 17px; display: block; margin-bottom: 2px; }
   #kdm-tip .tc { font-size: 14px; margin-bottom: 6px; font-weight: 600; }
   #kdm-tip .tp { font-size: 14px; color: var(--tx2); margin-top: 6px; }
+  @media (max-width: 700px) {
+    .kdm-main { flex-direction: column; }
+    .kdm-sidebar {
+      width: 100%;
+      flex-direction: row;
+      flex-wrap: wrap;
+      border-right: none;
+      border-bottom: 1px solid var(--bd);
+      padding-right: 0;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+      gap: 0 4px;
+    }
+    .kdm-li { padding: 5px 8px; font-size: 14px; }
+  }
 </style>
 </head>
 <body>
 <div class="kdm-wrap">
-  <div style="position: relative;">
-    <canvas id="kdm-c"></canvas>
-    <div id="kdm-tip"></div>
-  </div>
-  <div class="kdm-legend" id="kdm-leg"></div>
   <div class="kdm-hint">Node size = publication count. Hover nodes for paper details & cross-domain links. Drag to pan, scroll to zoom. Click legend to filter.</div>
+  <div class="kdm-main">
+    <div class="kdm-sidebar" id="kdm-leg"></div>
+    <div class="kdm-graph">
+      <canvas id="kdm-c"></canvas>
+      <div id="kdm-tip"></div>
+    </div>
+  </div>
 </div>
-
 <script>
 (function() {
   var cv = document.getElementById('kdm-c');
   var cx = cv.getContext('2d');
   var tip = document.getElementById('kdm-tip');
   var DPR = devicePixelRatio || 1;
-  var W, H, ASPECT = 0.9;
+  var W, H, ASPECT = 1.0;
 
   function resize() {
     W = cv.parentElement.clientWidth;
-    H = Math.min(660, Math.round(W * ASPECT));
+    H = Math.round(W * ASPECT);
     cv.width = W * DPR; cv.height = H * DPR;
     cv.style.width = W + 'px'; cv.style.height = H + 'px';
     cx.setTransform(DPR, 0, 0, DPR, 0, 0);
@@ -126,31 +158,25 @@
     {id:'neurmod',label:'Neuromodulation\n& bionics',cat:'Neuro-immune engineering',size:3,papers:'#22,#23,#24',paperList:'Fatigue-resistant muscle control (Sci Rob), biohybrid actuators (Nat BME), spinal cord interfaces',x:.48,y:.32},
     {id:'tpe',label:'Therapeutic protein\nengineering',cat:'Neuro-immune engineering',size:3,papers:'#25,#28',paperList:'CAMP platform, combinatorial engineering, de-immunization of ChR2, GAA, Factor VIII',x:.28,y:.10},
     {id:'expmicro',label:'Expansion\nmicroscopy',cat:'Neuro-immune engineering',size:1,papers:'#26',paperList:'4-fold expansion microscopy of cultured cells (JOVE)',x:.38,y:.42},
-
     {id:'graphene',label:'Graphene',cat:'2D materials & nanoscience',size:7,papers:'#1,#4,#11,#12,#13,#14,#16',paperList:'TEM support (Small Struct), PbI2 on graphene (Nat Comms), Gd migration (ACS Nano), hBN heterostructures, moiré twists',x:.72,y:.50},
     {id:'tmdc',label:'Transition metal\ndichalcogenides',cat:'2D materials & nanoscience',size:5,papers:'#5,#6,#8,#9,#16',paperList:'PdSe2 transformations (ACS Nano, Adv Mat), WS2 LEDs (ACS Nano), GeSe3 opto-structural coupling',x:.82,y:.38},
     {id:'phosph',label:'Phosphorene\n& black P',cat:'2D materials & nanoscience',size:2,papers:'#1,#20',paperList:'Air-stable BP heterostructures (2D Mat), single phosphorene atom chains in SWCNTs',x:.90,y:.55},
     {id:'pbi2',label:'Lead iodide\nnanostructures',cat:'2D materials & nanoscience',size:2,papers:'#11,#12',paperList:'2D PbI2 nanodisks on graphene (Nat Comms), defect dynamics and epitaxial alignment',x:.65,y:.62},
     {id:'silica2d',label:'2D silica',cat:'2D materials & nanoscience',size:1,papers:'#19',paperList:'Freestanding monolayer SiO2 synthesis and characterization',x:.88,y:.68},
     {id:'hetero',label:'0D-2D hybrid\nheterostructures',cat:'2D materials & nanoscience',size:2,papers:'#15,#16',paperList:'Nanomaterial hybrids for energy (Mat Today Adv), epitaxial vertical heterostructures (Adv Mat)',x:.75,y:.68},
-
     {id:'stem',label:'STEM &\nsingle-atom imaging',cat:'Electron microscopy & imaging',size:6,papers:'#4,#6,#11,#14,#17,#19',paperList:'ADF-STEM, in-situ Gd dynamics (ACS Nano), defect imaging, MAX phase reconstruction (Adv Func Mat)',x:.62,y:.38},
     {id:'eels',label:'EELS &\nspectroscopy',cat:'Electron microscopy & imaging',size:3,papers:'#14,#17,#20',paperList:'Atomic-level EELS mapping, monochromated STEM for polymer IR spectra, molecular vibrational analysis',x:.55,y:.52},
     {id:'insitu',label:'In-situ TEM',cat:'Electron microscopy & imaging',size:3,papers:'#4,#9,#14',paperList:'In-situ heating, electrical biasing, laser-irradiation growth observation',x:.68,y:.28},
-
     {id:'protlm',label:'Protein language\nmodels',cat:'Computational & AI',size:2,papers:'#25,#28',paperList:'CAMP framework (ICLR), policy optimization for epitope reduction (MLSB)',x:.12,y:.52},
     {id:'mlprot',label:'ML-guided\nprotein design',cat:'Computational & AI',size:2,papers:'#25,#28',paperList:'Combinatorial engineering, data-driven recombination, immune-informed design',x:.08,y:.40},
     {id:'compsim',label:'Atomistic\nsimulation',cat:'Computational & AI',size:2,papers:'#11,#8',paperList:'DFT of PbI2 (Nat Comms, with Grossman group), phase transformation modeling',x:.42,y:.62},
-
     {id:'fuller',label:'Endohedral\nfullerenes',cat:'Chemical synthesis',size:4,papers:'#3,#4,#10,#18',paperList:'Arc-discharge optimization (Inorganics), Gd metallofullerene dynamics, magnetic properties (book chapter)',x:.88,y:.25},
     {id:'cvd',label:'CVD synthesis',cat:'Chemical synthesis',size:3,papers:'#1,#5,#14',paperList:'hBN CVD growth (2D Mat), WS2 monolayer CVD (ACS Nano), laser-irradiated CNT growth',x:.80,y:.75},
     {id:'lpe',label:'Liquid-phase\nexfoliation',cat:'Chemical synthesis',size:2,papers:'#11,#12',paperList:'High-yield PbI2 and HfS2 nanodisk synthesis via solution chemistry',x:.68,y:.75},
     {id:'electrochem',label:'Electrocatalysis',cat:'Chemical synthesis',size:2,papers:'#17,#21',paperList:'RuO2 for PEM water electrolysis (Nat Comms sub), MAX phase oxygen evolution (Adv Func Mat)',x:.78,y:.15},
-
     {id:'photoswitch',label:'Photoswitching\n& phase change',cat:'Device physics & optoelectronics',size:3,papers:'#2,#7,#9',paperList:'Molecular conformation imaging (ACS Nano), opto-structural coupling (Nano Lett), laser-induced PdSe2 devices',x:.55,y:.22},
     {id:'led2d',label:'2D light-emitting\ndevices',cat:'Device physics & optoelectronics',size:2,papers:'#5,#7',paperList:'WS2 tunneling LEDs (ACS Nano), GeSe3 optoelectronics (Nano Lett)',x:.70,y:.18},
     {id:'quantum',label:'Quantum\nproperties',cat:'Device physics & optoelectronics',size:2,papers:'#3,#10',paperList:'Spin-active fullerene peapods, endohedral fullerene magnetic properties for quantum computing',x:.92,y:.38},
-
     {id:'nanoalz',label:'Nano for\nneurodegeneration',cat:'Interdisciplinary frontier',size:1,papers:'#29',paperList:'Integrating nanotechnologies for Alzheimer\'s — with Pinals, Langer, Boyden, Tsai',x:.48,y:.52},
   ];
 
@@ -205,7 +231,6 @@
   function draw() {
     cx.clearRect(0, 0, W, H);
 
-    // Cluster labels — bold, visible
     CLUSTER_LABELS.forEach(function(cl) {
       var lx = cl.x * W * zoom + pan.x;
       var ly = cl.y * H * zoom + pan.y;
@@ -219,7 +244,6 @@
       cx.globalAlpha = 1;
     });
 
-    // Edges
     edges.forEach(function(ed) {
       var a=ed[0], b=ed[1], w=ed[2], fut=ed[3];
       var na=nm[a], nb=nm[b];
@@ -228,7 +252,6 @@
       var pa=sp(na), pb=sp(nb);
       var isH = hov && (a===hov.id || b===hov.id);
       var dim = hov && !isH;
-
       cx.beginPath(); cx.moveTo(pa.x, pa.y); cx.lineTo(pb.x, pb.y);
       if (fut) cx.setLineDash([4,4]); else cx.setLineDash([]);
       var isCross = na.cat !== nb.cat;
@@ -238,7 +261,6 @@
       cx.stroke(); cx.setLineDash([]);
     });
 
-    // Nodes
     nodes.forEach(function(n) {
       var v = vis(n);
       var p = sp(n);
@@ -249,13 +271,11 @@
       var col = CATS[n.cat].col;
       var alpha = dim ? 0.12 : isH ? 1 : 0.9;
 
-      // Hover glow
       if (isH) {
         cx.beginPath(); cx.arc(p.x, p.y, r + 10*zoom, 0, Math.PI*2);
         cx.fillStyle = col; cx.globalAlpha = 0.08; cx.fill(); cx.globalAlpha = 1;
       }
 
-      // Circle
       cx.beginPath(); cx.arc(p.x, p.y, r, 0, Math.PI*2);
       cx.globalAlpha = alpha;
       cx.fillStyle = CATS[n.cat].fill;
@@ -265,7 +285,6 @@
       if (n.cat === 'Interdisciplinary frontier') cx.setLineDash([3,3]);
       cx.stroke(); cx.setLineDash([]);
 
-      // Number inside
       if (r > 12) {
         cx.font = '700 ' + Math.max(11, 13*zoom) + 'px "Caveat", cursive';
         cx.textAlign = 'center'; cx.textBaseline = 'middle';
@@ -274,13 +293,11 @@
       }
       cx.globalAlpha = 1;
 
-      // Label below
       if (dim && !isConn) cx.globalAlpha = 0.15;
       var fs = Math.max(11, (n.size >= 5 ? 14 : 13) * zoom);
       cx.font = (isH ? '700 ' : '500 ') + fs + 'px "Caveat", cursive';
       cx.textAlign = 'center'; cx.textBaseline = 'top';
       cx.fillStyle = col;
-
       var lines = n.label.split('\n');
       var lh = fs * 1.2;
       var ly = p.y + r + 5*zoom;
@@ -336,7 +353,6 @@
     pan.x = mx - (mx - pan.x) * (zoom/oz); pan.y = my - (my - pan.y) * (zoom/oz); draw();
   }, {passive: false});
 
-  // Touch support
   var lastTouch = null, lastDist = null;
   cv.addEventListener('touchstart', function(e) {
     if (e.touches.length === 1) {
@@ -371,8 +387,23 @@
   }, {passive: false});
   cv.addEventListener('touchend', function() { lastTouch = null; lastDist = null; });
 
-  // Legend
+  // Build sidebar legend
   var leg = document.getElementById('kdm-leg');
+
+  // "All" button at top
+  var allBtn = document.createElement('div');
+  allBtn.className = 'kdm-li active';
+  allBtn.setAttribute('data-cat', 'all');
+  allBtn.innerHTML = '<div class="kdm-dot" style="background:#888"></div><strong>All</strong>';
+  allBtn.addEventListener('click', function() {
+    activeCat = null;
+    document.querySelectorAll('.kdm-li').forEach(function(l) { l.classList.remove('dim'); l.classList.remove('active'); });
+    allBtn.classList.add('active');
+    draw();
+  });
+  leg.appendChild(allBtn);
+
+  // Category buttons
   Object.keys(CATS).forEach(function(cat) {
     var col = CATS[cat].col;
     var d = document.createElement('div');
@@ -380,8 +411,20 @@
     var isFrontier = cat === 'Interdisciplinary frontier';
     d.innerHTML = '<div class="kdm-dot" style="background:' + (isFrontier ? 'transparent' : col) + ';' + (isFrontier ? 'border:1.5px dashed '+col : '') + '"></div>' + cat;
     d.addEventListener('click', function() {
-      if (activeCat === cat) { activeCat = null; document.querySelectorAll('.kdm-li').forEach(function(l){ l.classList.remove('dim'); }); }
-      else { activeCat = cat; document.querySelectorAll('.kdm-li').forEach(function(l){ l.classList.toggle('dim', l.getAttribute('data-cat') !== cat); }); }
+      if (activeCat === cat) {
+        activeCat = null;
+        document.querySelectorAll('.kdm-li').forEach(function(l) { l.classList.remove('dim'); l.classList.remove('active'); });
+        allBtn.classList.add('active');
+      } else {
+        activeCat = cat;
+        document.querySelectorAll('.kdm-li').forEach(function(l) {
+          l.classList.remove('active');
+          l.classList.toggle('dim', l.getAttribute('data-cat') !== cat && l.getAttribute('data-cat') !== 'all');
+        });
+        allBtn.classList.remove('active');
+        d.classList.add('active');
+        d.classList.remove('dim');
+      }
       draw();
     });
     leg.appendChild(d);
