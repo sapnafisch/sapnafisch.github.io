@@ -57,21 +57,70 @@
     color: #4a1220;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
 
-  /* LinkedIn embed container */
+  /* LinkedIn embed */
   .linkedin-embed {
-    margin-bottom: 24px;
-    max-width: 550px;
+    position: relative;
+    width: 504px;
+    max-width: 100%;
+    height: 1197px;
+    margin-bottom: 28px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
   }
   .linkedin-embed iframe {
-    border: none;
-    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 504px;
-    height: 1197px;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
   }
+
+  /* Fallback shown only if iframe fails */
+  .linkedin-fallback {
+    display: none;
+    padding: 24px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 28px;
+    max-width: 504px;
+  }
+  .linkedin-fallback .lf-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .linkedin-fallback svg { width: 28px; height: 28px; flex-shrink: 0; }
+  .linkedin-fallback .lf-org {
+    font-weight: 700;
+    font-size: 15px;
+    color: #2c2c2a;
+  }
+  .linkedin-fallback .lf-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 16px;
+  }
+  .linkedin-fallback .lf-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0a66c2;
+    text-decoration: none;
+  }
+  .linkedin-fallback .lf-link:hover { text-decoration: underline; }
 
   .news-label {
     font-family: Georgia, serif;
@@ -87,14 +136,16 @@
     line-height: 1.85;
     color: #73726c;
   }
-  .news-body p {
-    margin-bottom: 14px;
-  }
-  .news-body p:last-child {
-    margin-bottom: 0;
-  }
-  .news-body em {
-    font-style: italic;
+  .news-body p { margin-bottom: 14px; }
+  .news-body p:last-child { margin-bottom: 0; }
+  .news-body em { font-style: italic; }
+
+  @media (max-width: 540px) {
+    .linkedin-embed {
+      width: 100%;
+      height: 0;
+      padding-bottom: 237%; /* 1197/504 aspect ratio */
+    }
   }
 </style>
 </head>
@@ -104,7 +155,7 @@
   <a href="index.html" class="name">Sapna Sinha</a>
   <a href="research.html">Research</a>
   <a href="publications.html">Publications</a>
-  <a href="news_and_updates.html">News & Updates </a>
+  <a href="news_and_updates.html">News & Updates</a>
 </nav>
 
 <div class="news-section">
@@ -113,8 +164,30 @@
   <div class="news-item">
     <div class="news-date">March 17, 2026</div>
 
-    <div class="linkedin-embed">
-      <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7439408506098700289" height="1197" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+    <!-- LinkedIn iframe embed -->
+    <div class="linkedin-embed" id="li-embed">
+      <iframe
+        src="https://www.linkedin.com/embed/feed/update/urn:li:share:7439408506098700289"
+        height="1197"
+        width="504"
+        frameborder="0"
+        allowfullscreen=""
+        title="Embedded post">
+      </iframe>
+    </div>
+
+    <!-- Fallback if iframe doesn't load -->
+    <div class="linkedin-fallback" id="li-fallback">
+      <div class="lf-top">
+        <svg viewBox="0 0 24 24" fill="#0a66c2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <span class="lf-org">Termeer Institute</span>
+      </div>
+      <div class="lf-text">
+        Today, the Termeer Institute is bringing together leaders in biotech, startups, and conversations on what it takes to build something meaningful in medicine.
+      </div>
+      <a class="lf-link" href="https://www.linkedin.com/posts/termeer-institute_today-the-termeer-institute-is-bringing-activity-7439649329465851904-inGs" target="_blank" rel="noopener">
+        View full post on LinkedIn →
+      </a>
     </div>
 
     <div class="news-label">Leadership Legacy</div>
@@ -127,5 +200,19 @@
   </div>
 
 </div>
+
+<script>
+  // Detect if LinkedIn iframe fails to load and show fallback
+  var iframe = document.querySelector('#li-embed iframe');
+  var loaded = false;
+  iframe.addEventListener('load', function() { loaded = true; });
+  setTimeout(function() {
+    if (!loaded) {
+      document.getElementById('li-embed').style.display = 'none';
+      document.getElementById('li-fallback').style.display = 'block';
+    }
+  }, 5000);
+</script>
+
 </body>
 </html>
