@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF8;
+    --tx: #2c2c2a;
+    --tx2: #73726c;
+    --tx3: #9c9a92;
+    --bd: rgba(44,44,42,0.12);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); font-family: Georgia, serif; color: var(--tx); }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 28px 40px;
+    display: flex; align-items: baseline; gap: 48px;
+    z-index: 10;
+    background: #4a1220;
+  }
+  nav a {
+    color: #e8d8d8;
+    text-decoration: none;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+  }
+  nav a:hover { color: #fff; }
+  nav .name { font-size: 18px; font-weight: 700; }
+
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 90px 1rem 60px;
+  }
+  .page-title {
+    font-family: 'Caveat', cursive;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--tx);
+    margin-bottom: 10px;
+  }
+  .page-hint {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: var(--tx3);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .layout {
+    display: flex;
+    gap: 0;
+    align-items: flex-start;
+  }
+
+  /* ── Sidebar ── */
+  .sidebar {
+    width: 220px;
+    flex-shrink: 0;
+    padding-right: 20px;
+    border-right: 1px solid var(--bd);
+    position: sticky;
+    top: 90px;
+    font-family: 'Caveat', cursive;
+  }
+  .sb-section {
+    margin-bottom: 20px;
+  }
+  .sb-heading {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--tx3);
+    margin-bottom: 6px;
+    padding: 4px 10px;
+    font-family: Georgia, serif;
+  }
+  .sb-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    cursor: pointer;
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-size: 17px;
+    color: var(--tx2);
+    transition: opacity 0.15s, background 0.15s;
+    user-select: none;
+  }
+  .sb-item:hover { background: rgba(0,0,0,0.03); }
+  .sb-item.active { background: rgba(0,0,0,0.05); font-weight: 700; color: var(--tx); }
+  .sb-item.dim { opacity: 0.25; }
+  .sb-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .sb-sub {
+    font-size: 15px;
+    padding-left: 29px;
+    color: var(--tx3);
+  }
+  .sb-sub.active { color: var(--tx); font-weight: 600; }
+
+  /* ── Content area ── */
+  .content {
+    flex: 1;
+    padding-left: 28px;
+    min-width: 0;
+  }
+
+  /* Post cards */
+  .post {
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--bd);
+  }
+  .post:last-child { border-bottom: none; }
+  .post.hidden { display: none; }
+
+  .post-tag {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .post-date {
+    font-size: 13px;
+    color: var(--tx3);
+    margin-bottom: 12px;
+  }
+  .post-title {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--tx);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+
+  /* LinkedIn image card */
+  .li-post {
+    display: block;
+    max-width: 460px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    text-decoration: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .li-post:hover {
+    border-color: #0a66c2;
+    box-shadow: 0 2px 16px rgba(10,102,194,0.10);
+  }
+  .li-post img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .li-post-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: #fff;
+    font-size: 12px;
+    color: #0a66c2;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  .li-post-footer svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  .post-body {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--tx2);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  .post-body p { margin-bottom: 14px; }
+  .post-body p:last-child { margin-bottom: 0; }
+  .post-body em { font-style: italic; }
+
+  /* Empty state */
+  .empty-state {
+    display: none;
+    padding: 60px 0;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+  }
+  .empty-state .es-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+    opacity: 0.3;
+  }
+  .empty-state .es-text {
+    font-size: 20px;
+    color: var(--tx3);
+  }
+
+  /* ── Colors per category ── */
+  .cat-attendance { color: #1a1a40; }
+  .dot-attendance { background: #1a1a40; }
+  .cat-first-principles { color: #4a148c; }
+  .dot-first-principles { background: #4a148c; }
+  .cat-inquiry { color: #0d47a1; }
+  .dot-inquiry { background: #0d47a1; }
+  .cat-interface { color: #c0392b; }
+  .dot-interface { background: #c0392b; }
+  .cat-marginalia { color: #d35400; }
+  .dot-marginalia { background: #d35400; }
+  .cat-reflections { color: #c2185b; }
+  .dot-reflections { background: #c2185b; }
+
+  /* ── Mobile ── */
+  @media (max-width: 700px) {
+    .layout { flex-direction: column; }
+    .sidebar {
+      width: 100%;
+      position: static;
+      border-right: none;
+      border-bottom: 1px solid var(--bd);
+      padding-right: 0;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 4px;
+    }
+    .sb-section { margin-bottom: 8px; }
+    .sb-heading { font-size: 11px; }
+    .sb-item { padding: 5px 8px; font-size: 14px; }
+    .sb-sub { padding-left: 20px; font-size: 13px; }
+    .content { padding-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="name">Sapna Sinha</a>
+  <a href="research.html">Research</a>
+  <a href="publications.html">Publications</a>
+  <a href="blog.html">News & Updates</a>
+</nav>
+
+<main>
+  <div class="page-title">News & Updates</div>
+  <div class="page-hint">Click a category to filter. Click again to show all.</div>
+
+  <div class="layout">
+
+    <!-- ── Sidebar ── -->
+    <div class="sidebar" id="sidebar">
+
+      <!-- All -->
+      <div class="sb-item active" data-cat="all">
+        <div class="sb-dot" style="background:#888"></div>
+        <strong>All</strong>
+      </div>
+
+      <!-- In Attendance -->
+      <div class="sb-section">
+        <div class="sb-heading">Events</div>
+        <div class="sb-item" data-cat="attendance">
+          <div class="sb-dot dot-attendance"></div>
+          In Attendance
+        </div>
+      </div>
+
+      <!-- Science -->
+      <div class="sb-section">
+        <div class="sb-heading">Science</div>
+        <div class="sb-item" data-cat="first-principles">
+          <div class="sb-dot dot-first-principles"></div>
+          First Principles
+        </div>
+        <div class="sb-item" data-cat="inquiry">
+          <div class="sb-dot dot-inquiry"></div>
+          Inquiry
+        </div>
+        <div class="sb-item" data-cat="interface">
+          <div class="sb-dot dot-interface"></div>
+          At the Interface
+        </div>
+      </div>
+
+      <!-- Personal -->
+      <div class="sb-section">
+        <div class="sb-heading">Personal</div>
+        <div class="sb-item" data-cat="marginalia">
+          <div class="sb-dot dot-marginalia"></div>
+          Marginalia
+        </div>
+        <div class="sb-item" data-cat="reflections">
+          <div class="sb-dot dot-reflections"></div>
+          Reflections
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Content ── -->
+    <div class="content" id="content">
+
+      <!-- POST: Termeer Summit -->
+      <div class="post" data-cat="attendance">
+        <div class="post-tag cat-attendance">In Attendance</div>
+        <div class="post-date">March 17, 2026</div>
+        <div class="post-title">Leadership Legacy — Termeer Summit: CEOs for Cures</div>
+
+        <a class="li-post" href="https://www.linkedin.com/posts/termeer-institute_today-the-termeer-institute-is-bringing-activity-7439649329465851904-inGs" target="_blank" rel="noopener">
+          <img src="images/termeer-post.png" alt="LinkedIn post by Termeer Institute about the 2nd Annual Termeer Summit: CEOs for Cures">
+          <div class="li-post-footer">
+            <svg viewBox="0 0 24 24" fill="#0a66c2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            View original post on LinkedIn →
+          </div>
+        </a>
+
+        <div class="post-body">
+          <p>I had the opportunity to attend the 2nd Annual Termeer Summit: CEOs for Cures, organized by the Termeer Institute. The event brought together an impressive lineup of biotech leaders, founders, and industry veterans for a day of keynotes, panels, and roundtable discussions on purpose-driven leadership in life sciences.</p>
+          <p>But the thing that stuck with me the most wasn't the programming. It was the people. Getting to know the individuals in that room who had worked alongside Henri Termeer — <em>decades</em> ago — and realizing they were still at it. Still building. Still showing up and doing remarkable things across the industry.</p>
+          <p>It made me think about what leadership legacy actually looks like. Not just in the companies you build, but in the people who carry your values forward into their own careers, their own teams, their own decisions — long after they've moved on. Henri built an amazing company, but maybe the more enduring thing he built was a generation of people who understood what it meant to do the work that mattered, and went out and did more of it. The impact compounds in ways you can't measure.</p>
+          <p>I spent the evening after reading about Henri's early years at Genzyme — the strategic bets, the patient-first decisions that shaped rare disease therapeutics. There's a lot to learn from how he built what he built.</p>
+        </div>
+      </div>
+
+      <!-- ── Placeholder posts for other categories ── -->
+
+      <div class="post" data-cat="first-principles" style="display:none;"></div>
+      <div class="post" data-cat="inquiry" style="display:none;"></div>
+      <div class="post" data-cat="interface" style="display:none;"></div>
+      <div class="post" data-cat="marginalia" style="display:none;"></div>
+      <div class="post" data-cat="reflections" style="display:none;"></div>
+
+      <!-- Empty state -->
+      <div class="empty-state" id="empty-state">
+        <div class="es-icon">✎</div>
+        <div class="es-text">Nothing here yet — stay tuned.</div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script>
+(function() {
+  var sidebar = document.getElementById('sidebar');
+  var items = sidebar.querySelectorAll('.sb-item');
+  var posts = document.querySelectorAll('#content .post');
+  var empty = document.getElementById('empty-state');
+  var activeCat = 'all';
+
+  function update() {
+    var visibleCount = 0;
+
+    posts.forEach(function(p) {
+      var cat = p.getAttribute('data-cat');
+      var hasContent = p.innerHTML.trim() !== '';
+      if (activeCat === 'all') {
+        p.style.display = hasContent ? '' : 'none';
+        if (hasContent) visibleCount++;
+      } else if (cat === activeCat) {
+        p.style.display = hasContent ? '' : 'none';
+        if (hasContent) visibleCount++;
+      } else {
+        p.style.display = 'none';
+      }
+    });
+
+    empty.style.display = visibleCount === 0 ? 'block' : 'none';
+
+    items.forEach(function(el) {
+      var cat = el.getAttribute('data-cat');
+      el.classList.remove('active', 'dim');
+      if (activeCat === 'all') {
+        if (cat === 'all') el.classList.add('active');
+      } else {
+        if (cat === activeCat) el.classList.add('active');
+        else if (cat !== 'all') el.classList.add('dim');
+      }
+    });
+  }
+
+  items.forEach(function(el) {
+    el.addEventListener('click', function() {
+      var cat = el.getAttribute('data-cat');
+      if (cat === 'all' || activeCat === cat) {
+        activeCat = 'all';
+      } else {
+        activeCat = cat;
+      }
+      update();
+    });
+  });
+
+  update();
+})();
+</script>
+
+</body>
+</html>
