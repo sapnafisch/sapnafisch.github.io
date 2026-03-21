@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leadership Legacy — Sapna Sinha</title>
+<meta name="description" content="Reflections on attending the 2nd Annual Termeer Summit and what Henri Termeer's leadership legacy looks like in the people he shaped.">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #FAFAF8; font-family: Georgia, serif; color: #2c2c2a; }
+  nav { position: fixed; top: 0; left: 0; right: 0; padding: 28px 40px; display: flex; align-items: baseline; gap: 48px; z-index: 10; background: #4a1220; }
+  nav a { color: #e8d8d8; text-decoration: none; font-size: 15px; letter-spacing: 0.5px; }
+  nav a:hover { color: #fff; }
+  nav .name { font-size: 18px; font-weight: 700; }
+  article { max-width: 700px; margin: 0 auto; padding: 100px 1rem 60px; }
+  .li-post { display: block; max-width: 460px; margin: 0 auto 16px; border-radius: 10px; overflow: hidden; border: 1px solid #e0e0e0; text-decoration: none; }
+  .li-post:hover { border-color: #0a66c2; box-shadow: 0 2px 16px rgba(10,102,194,0.10); }
+  .li-post img { display: block; width: 100%; }
+  .li-post-footer { display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: #fff; font-size: 12px; color: #0a66c2; font-weight: 600; }
+  .li-post-footer svg { width: 16px; height: 16px; }
+  .back { font-size: 14px; color: #9c9a92; text-decoration: none; }
+  .back:hover { color: #2c2c2a; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="name">Sapna Sinha</a>
+  <a href="../research.html">Research</a>
+  <a href="../publications.html">Publications</a>
+  <a href="../blog.html">Field Notes</a>
+</nav>
+
+<article>
+
+  <a class="back" href="../blog.html">← Back to Field Notes</a>
+
+  <div style="font-family:'Caveat',cursive; font-size:15px; font-weight:600; color:#1a1a40; margin:20px 0 4px;">In Attendance</div>
+  <div style="font-size:13px; color:#9c9a92; margin-bottom:16px;">March 17, 2026</div>
+  <div style="font-family:'Caveat',cursive; font-size:28px; font-weight:700; text-align:center; margin-bottom:20px;">Termeer Summit: CEOs for Cures</div>
+
+  <a class="li-post" href="https://www.linkedin.com/posts/termeer-institute_today-the-termeer-institute-is-bringing-activity-7439649329465851904-inGs" target="_blank" rel="noopener">
+    <img src="../images/termeer-post.png" alt="LinkedIn post by Termeer Institute about the 2nd Annual Termeer Summit">
+    <div class="li-post-footer">
+      <svg viewBox="0 0 24 24" fill="#0a66c2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      View original post on LinkedIn →
+    </div>
+  </a>
+
+  <div style="font-family:'Caveat',cursive; font-size:26px; font-weight:700; margin:24px 0 16px;">Leadership Legacy: On the people who carry the work forward</div>
+
+  <div style="font-size:16px; line-height:1.9; color:#73726c;">
+    <p style="margin-bottom:16px;">I had the opportunity to attend the 2nd Annual Termeer Summit: CEOs for Cures, organized by the Termeer Institute. The event brought together an impressive lineup of biotech leaders, founders, and industry veterans for a day of keynotes, panels, and roundtable discussions on purpose-driven leadership in life sciences.</p>
+    <p style="margin-bottom:16px;">But the thing that stuck with me the most wasn't the programming. It was the people. Getting to know the individuals in that room who had worked alongside Henri Termeer <em>decades</em> ago, and realizing they were still at it. Still building. Still showing up and doing remarkable things across the industry.</p>
+    <p style="margin-bottom:16px;">It made me think about what leadership legacy actually looks like. Not just in the companies you build, but in the people who carry your values forward into their own careers, their own teams, their own decisions — long after they've moved on. Henri built an amazing company, but maybe the more enduring thing he built was a generation of people who understood what it meant to do the work that mattered, and went out and did more of it. The impact compounds in ways you can't measure.</p>
+    <p>I left wanting to understand more about how Henri built Genzyme into what it became: the decisions, the conviction, and the institutional culture that clearly outlasted him. There's something worth studying there.</p>
+  </div>
+
+  <div style="margin-top:40px; padding-top:20px; border-top:1px solid rgba(44,44,42,0.12); display:flex; justify-content:space-between; align-items:center;">
+    <a class="back" href="../blog.html">← Back to Field Notes</a>
+    <a href="mailto:ssapna@mit.edu?subject=Re: Leadership Legacy" style="font-size:14px; color:#4a1220; text-decoration:none; border-bottom:1px solid rgba(74,18,32,0.3);">Thoughts? Drop me a note →</a>
+  </div>
+
+</article>
+
+</body>
+</html>
