@@ -19,25 +19,35 @@
   .page-legend span { display: flex; align-items: center; gap: 6px; }
   .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
 
-  /* Year timeline */
+  /* Year groups */
   .yr { display: flex; gap: 0; }
   .yr-label { width: 80px; flex-shrink: 0; font-family: Georgia, serif; font-size: 22px; font-weight: 700; color: #4a1220; padding-top: 16px; position: relative; }
   .yr-label::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 2px; background: #4a1220; opacity: 0.25; }
   .yr-dot { position: absolute; right: -5px; top: 24px; width: 10px; height: 10px; border-radius: 50%; background: #4a1220; border: 2px solid #FAFAF8; }
   .yr-items { flex: 1; padding: 10px 0 24px 28px; }
 
-  /* Cards */
-  .card { padding: 16px 20px; margin-bottom: 14px; border-radius: 10px; background: #fff; line-height: 1.7; }
+  /* Cards with image */
+  .card { display: flex; gap: 20px; align-items: flex-start; padding: 18px 20px; margin-bottom: 14px; border-radius: 10px; background: #fff; line-height: 1.7; font-size: 14.5px; color: #73726c; }
   .card:last-child { margin-bottom: 0; }
-  .card-award { border-left: 4px solid #4a1220; }
-  .card-media { border-right: 4px solid #0a66c2; text-align: right; }
+  .card-award { border-left: 4px solid #4a1220; flex-direction: row; }
+  .card-media { border-right: 4px solid #0a66c2; flex-direction: row-reverse; text-align: right; }
+  .card-img { width: 80px; height: 80px; flex-shrink: 0; border-radius: 8px; object-fit: contain; background: #f5f5f3; padding: 8px; }
+  .card-text { flex: 1; }
   .card a { text-decoration: none; border-bottom: 1px solid rgba(0,0,0,0.15); }
   .card a:hover { border-bottom-color: #2c2c2a; }
   .card-award a { color: #4a1220; }
   .card-media a { color: #0a66c2; }
   .card strong { color: #2c2c2a; font-weight: 600; }
 
-  @media (max-width: 600px) { .yr-label { width: 56px; font-size: 18px; } .yr-items { padding-left: 18px; } }
+  /* No-image cards */
+  .card-noimg { display: block; }
+
+  @media (max-width: 600px) {
+    .yr-label { width: 56px; font-size: 18px; }
+    .yr-items { padding-left: 18px; }
+    .card { flex-direction: column !important; text-align: left !important; }
+    .card-img { width: 60px; height: 60px; }
+  }
 </style>
 </head>
 <body>
@@ -46,7 +56,7 @@
   <a href="index.html" class="name">Sapna Sinha</a>
   <a href="research.html">Research</a>
   <a href="publications.html">Publications</a>
-  <a href="blog.html">Field Notes</a>
+  <a href="blog.html">Blog</a>
   <a href="recognition.html">Recognition</a>
 </nav>
 
@@ -61,16 +71,25 @@
   <div class="yr">
     <div class="yr-label">2025<div class="yr-dot"></div></div>
     <div class="yr-items">
-      <div class="card card-award" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
-        <a href="https://termeerinstitute.org/scholars/"><strong>Termeer Scholars Award</strong></a>, Termeer Institute<br>
-        Recognizing academic scientists committed to translating research into patient impact. A two-day workshop on values-driven leadership, commercialization, and bench-to-bedside pathways.
+
+      <div class="card card-award">
+        <img class="card-img" src="images/logo-termeer.png" alt="Termeer Institute">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
+          <a href="https://termeerinstitute.org/scholars/"><strong>Termeer Scholars Award</strong></a>, Termeer Institute<br>
+          Recognizing academic scientists committed to translating research into patient impact. A two-day workshop on values-driven leadership, commercialization, and bench-to-bedside pathways.
+        </div>
       </div>
-      <div class="card card-media" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#0a66c2; margin-bottom:4px;">Media</div>
-        <strong>IITM Shaastra Magazine</strong> — <a href="https://shaastramag.iitm.ac.in/special-feature/eyes-light">Eyes on the Light</a><br>
-        Feature article on optogenetics research and engineering light-sensitive proteins for therapeutic use.
+
+      <div class="card card-media">
+        <img class="card-img" src="images/logo-shaastra.png" alt="Shaastra Magazine">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#0a66c2; margin-bottom:4px;">Media</div>
+          <strong>IITM Shaastra Magazine</strong> — <a href="https://shaastramag.iitm.ac.in/special-feature/eyes-light">Eyes on the Light</a><br>
+          Feature article on optogenetics research and engineering light-sensitive proteins for therapeutic use.
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -78,31 +97,51 @@
   <div class="yr">
     <div class="yr-label">2024<div class="yr-dot"></div></div>
     <div class="yr-items">
-      <div class="card card-award" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
-        Named on <a href="https://www.forbes.com/profile/sapna-sinha/"><strong>Forbes 30 Under 30</strong></a>, Science List, Asia<br>
-        Annual list recognizing young leaders shaping the future of science and technology across the Asia-Pacific region.
+
+      <div class="card card-award">
+        <img class="card-img" src="images/logo-forbes.png" alt="Forbes">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
+          Named on <a href="https://www.forbes.com/profile/sapna-sinha/"><strong>Forbes 30 Under 30</strong></a>, Science List, Asia<br>
+          Annual list recognizing young leaders shaping the future of science and technology across the Asia-Pacific region.
+        </div>
       </div>
-      <div class="card card-award" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
-        <strong>McGovern Travel and Technology Award</strong>, MIT<br>
-        Supporting postdoctoral research in de-immunizing optogenetics for clinical translation.
+
+      <div class="card card-award card-noimg">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
+          <strong>McGovern Travel and Technology Award</strong>, MIT<br>
+          Supporting postdoctoral research in de-immunizing optogenetics for clinical translation.
+        </div>
       </div>
-      <div class="card card-media" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#0a66c2; margin-bottom:4px;">Media</div>
-        <strong>Nagoya University G30</strong> — <a href="https://admissions.g30.nagoya-u.ac.jp/wp-content/uploads/2024/11/Sapna-Sinha-Alumni-Profile.pdf">Alumni Profile</a><br>
-        Featured profile tracing the path from the G30 Chemistry Program to postdoctoral research at MIT.
+
+      <div class="card card-media">
+        <img class="card-img" src="images/logo-nagoya.png" alt="Nagoya University">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#0a66c2; margin-bottom:4px;">Media</div>
+          <strong>Nagoya University G30</strong> — <a href="https://admissions.g30.nagoya-u.ac.jp/wp-content/uploads/2024/11/Sapna-Sinha-Alumni-Profile.pdf">Alumni Profile</a><br>
+          Featured profile tracing the path from the G30 Chemistry Program to postdoctoral research at MIT.
+        </div>
       </div>
-      <div class="card card-media" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#0a66c2; margin-bottom:4px;">Media</div>
-        <strong>Schmidt Science Fellows</strong> — <a href="https://www.youtube.com/watch?v=tRula8doB3Y">Video Feature</a><br>
-        On pivoting from materials science into neuroscience, and building at the intersection of immunology, optogenetics, and AI.
+
+      <div class="card card-media">
+        <img class="card-img" src="images/logo-schmidt.png" alt="Schmidt Science Fellows">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#0a66c2; margin-bottom:4px;">Media</div>
+          <strong>Schmidt Science Fellows</strong> — <a href="https://www.youtube.com/watch?v=tRula8doB3Y">Video Feature</a><br>
+          On pivoting from materials science into neuroscience, and building at the intersection of immunology, optogenetics, and AI.
+        </div>
       </div>
-      <div class="card card-media" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#0a66c2; margin-bottom:4px;">Media</div>
-        <strong>Forbes</strong> — <a href="https://www.forbes.com/profile/sapna-sinha/">Profile Page</a><br>
-        30 Under 30 Science List, Asia.
+
+      <div class="card card-media">
+        <img class="card-img" src="images/logo-forbes.png" alt="Forbes">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#0a66c2; margin-bottom:4px;">Media</div>
+          <strong>Forbes</strong> — <a href="https://www.forbes.com/profile/sapna-sinha/">Profile Page</a><br>
+          30 Under 30 Science List, Asia.
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -110,11 +149,16 @@
   <div class="yr">
     <div class="yr-label">2022<div class="yr-dot"></div></div>
     <div class="yr-items">
-      <div class="card card-media" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#0a66c2; margin-bottom:4px;">Media</div>
-        <strong>Schmidt Science Fellows</strong> — <a href="https://schmidtsciencefellows.org/fellow/sapna-sinha/">Fellow Profile</a><br>
-        From materials science to neurobiology — pivoting disciplines as a Schmidt Science Fellow at MIT.
+
+      <div class="card card-media">
+        <img class="card-img" src="images/logo-schmidt.png" alt="Schmidt Science Fellows">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#0a66c2; margin-bottom:4px;">Media</div>
+          <strong>Schmidt Science Fellows</strong> — <a href="https://schmidtsciencefellows.org/fellow/sapna-sinha/">Fellow Profile</a><br>
+          From materials science to neurobiology — pivoting disciplines as a Schmidt Science Fellow at MIT.
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -122,16 +166,25 @@
   <div class="yr">
     <div class="yr-label">2021<div class="yr-dot"></div></div>
     <div class="yr-items">
-      <div class="card card-award" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
-        <a href="https://schmidtsciencefellows.org/fellow/sapna-sinha/"><strong>Schmidt Science Fellow</strong></a>, Rhodes Trust, UK (2021–2024)<br>
-        Highly competitive postdoctoral fellowship supporting scientists who pivot into a new field. Funded the transition from nanomaterials to neuroscience at MIT.
+
+      <div class="card card-award">
+        <img class="card-img" src="images/logo-schmidt.png" alt="Schmidt Science Fellows">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
+          <a href="https://schmidtsciencefellows.org/fellow/sapna-sinha/"><strong>Schmidt Science Fellow</strong></a>, Rhodes Trust, UK (2021–2024)<br>
+          Highly competitive postdoctoral fellowship supporting scientists who pivot into a new field. Funded the transition from nanomaterials to neuroscience at MIT.
+        </div>
       </div>
-      <div class="card card-media" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#0a66c2; margin-bottom:4px;">Media</div>
-        <strong>Linacre College, Oxford</strong> — <a href="https://www.linacre.ox.ac.uk/news/alumna-sapna-sinha-new-schmidt-science-fellow">Alumna Named Schmidt Science Fellow</a><br>
-        College announcement on selection for the 2021 Schmidt Science Fellows cohort.
+
+      <div class="card card-media">
+        <img class="card-img" src="images/logo-oxford.png" alt="Linacre College Oxford">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#0a66c2; margin-bottom:4px;">Media</div>
+          <strong>Linacre College, Oxford</strong> — <a href="https://www.linacre.ox.ac.uk/news/alumna-sapna-sinha-new-schmidt-science-fellow">Alumna Named Schmidt Science Fellow</a><br>
+          College announcement on selection for the 2021 Schmidt Science Fellows cohort.
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -139,11 +192,15 @@
   <div class="yr">
     <div class="yr-label">2020<div class="yr-dot"></div></div>
     <div class="yr-items">
-      <div class="card card-award" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
-        <strong>Best Poster Award</strong>, MRS Spring, Boston<br>
-        For work on liquid-exfoliated 2D lead iodide nanodisks imaged via ADF-STEM.
+
+      <div class="card card-award card-noimg">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
+          <strong>Best Poster Award</strong>, MRS Spring, Boston<br>
+          For work on liquid-exfoliated 2D lead iodide nanodisks imaged via ADF-STEM.
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -151,25 +208,38 @@
   <div class="yr">
     <div class="yr-label">2018<div class="yr-dot"></div></div>
     <div class="yr-items">
-      <div class="card card-award" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
-        <strong>EPSRC Student Scholarship</strong>, Dept. of Materials, University of Oxford (2018–2020)<br>
-        Doctoral funding from the Engineering and Physical Sciences Research Council.
+
+      <div class="card card-award card-noimg">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
+          <strong>EPSRC Student Scholarship</strong>, Dept. of Materials, University of Oxford (2018–2020)<br>
+          Doctoral funding from the Engineering and Physical Sciences Research Council.
+        </div>
       </div>
-      <div class="card card-award" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
-        <a href="https://grapheneconf.archivephantomsnet.net/2018/awards.php"><strong>Best Poster Award at Graphene 2018</strong></a><br>
-        Largest European conference on graphene and 2D materials. For atomic-resolution imaging of metallofullerenes on graphene.
+
+      <div class="card card-award card-noimg">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
+          <a href="https://grapheneconf.archivephantomsnet.net/2018/awards.php"><strong>Best Poster Award at Graphene 2018</strong></a><br>
+          Largest European conference on graphene and 2D materials. For atomic-resolution imaging of metallofullerenes on graphene.
+        </div>
       </div>
-      <div class="card card-award" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
-        <strong>Travel Grant & Scholarship</strong>, ICTP, Trieste, Italy<br>
-        Summer School on Collective Behaviour in Quantum Matter.
+
+      <div class="card card-award card-noimg">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
+          <strong>Travel Grant & Scholarship</strong>, ICTP, Trieste, Italy<br>
+          Summer School on Collective Behaviour in Quantum Matter.
+        </div>
       </div>
-      <div class="card card-award" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
-        <strong>Founders Graduate Travel Scholarship</strong>, Dept. of Materials, University of Oxford
+
+      <div class="card card-award card-noimg">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
+          <strong>Founders Graduate Travel Scholarship</strong>, Dept. of Materials, University of Oxford
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -177,11 +247,15 @@
   <div class="yr">
     <div class="yr-label">2017<div class="yr-dot"></div></div>
     <div class="yr-items">
-      <div class="card card-award" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
-        <a href="https://www.linacre.ox.ac.uk/news/alumna-sapna-sinha-new-schmidt-science-fellow"><strong>Women in Science Fellowship</strong></a>, Linacre College, University of Oxford (2017–2020)<br>
-        Supporting women pursuing doctoral research in the sciences at Oxford.
+
+      <div class="card card-award card-noimg">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
+          <a href="https://www.linacre.ox.ac.uk/news/alumna-sapna-sinha-new-schmidt-science-fellow"><strong>Women in Science Fellowship</strong></a>, Linacre College, University of Oxford (2017–2020)<br>
+          Supporting women pursuing doctoral research in the sciences at Oxford.
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -189,10 +263,14 @@
   <div class="yr">
     <div class="yr-label">2016<div class="yr-dot"></div></div>
     <div class="yr-items">
-      <div class="card card-award" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
-        <strong>Graduated Top of the Class</strong>, Nagoya University, Japan
+
+      <div class="card card-award card-noimg">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
+          <strong>Graduated Top of the Class</strong>, Nagoya University, Japan
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -200,10 +278,14 @@
   <div class="yr">
     <div class="yr-label">2014<div class="yr-dot"></div></div>
     <div class="yr-items">
-      <div class="card card-award" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
-        Outstanding <a href="https://www.jsps.go.jp/file/storage/general/j-kokusaika/follow-up/data/h26/SessionD_3.pdf"><strong>Presenter at Global 30 Wrap-up Symposium</strong></a>, JSPS, Fukuoka, Japan
+
+      <div class="card card-award card-noimg">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
+          Outstanding <a href="https://www.jsps.go.jp/file/storage/general/j-kokusaika/follow-up/data/h26/SessionD_3.pdf"><strong>Presenter at Global 30 Wrap-up Symposium</strong></a>, JSPS, Fukuoka, Japan
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -211,14 +293,21 @@
   <div class="yr">
     <div class="yr-label">2012<div class="yr-dot"></div></div>
     <div class="yr-items">
-      <div class="card card-award" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
-        <strong>Global 30 Undergraduate Studentship</strong>, Nagoya University (2012–2016)
+
+      <div class="card card-award card-noimg">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
+          <strong>Global 30 Undergraduate Studentship</strong>, Nagoya University (2012–2016)
+        </div>
       </div>
-      <div class="card card-award" style="font-size:14.5px; color:#73726c;">
-        <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
-        <strong>JASSO Scholarship</strong>, Ministry of Education, Japan (2012–2013)
+
+      <div class="card card-award card-noimg">
+        <div class="card-text">
+          <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
+          <strong>JASSO Scholarship</strong>, Ministry of Education, Japan (2012–2013)
+        </div>
       </div>
+
     </div>
   </div>
 
