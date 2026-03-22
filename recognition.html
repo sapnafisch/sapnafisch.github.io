@@ -31,7 +31,7 @@
   .card:last-child { margin-bottom: 0; }
   .card-award { border-left: 4px solid #4a1220; flex-direction: row; }
   .card-media { border-right: 4px solid #0a66c2; flex-direction: row-reverse; text-align: right; }
-  .card-img { width: 80px; height: 80px; flex-shrink: 0; border-radius: 8px; object-fit: contain; background: #f5f5f3; padding: 8px; }
+  .card-img { width: 200px; flex-shrink: 0; border-radius: 8px; object-fit: cover; background: #f5f5f3; }
   .card-text { flex: 1; }
   .card a { text-decoration: none; border-bottom: 1px solid rgba(0,0,0,0.15); }
   .card a:hover { border-bottom-color: #2c2c2a; }
@@ -46,7 +46,7 @@
     .yr-label { width: 56px; font-size: 18px; }
     .yr-items { padding-left: 18px; }
     .card { flex-direction: column !important; text-align: left !important; }
-    .card-img { width: 60px; height: 60px; }
+    .card-img { width: 100%; max-height: 200px; }
   }
 </style>
 </head>
@@ -56,7 +56,7 @@
   <a href="index.html" class="name">Sapna Sinha</a>
   <a href="research.html">Research</a>
   <a href="publications.html">Publications</a>
-  <a href="blog.html">Blog</a>
+  <a href="blog.html">Field Notes</a>
   <a href="recognition.html">Recognition</a>
 </nav>
 
@@ -71,10 +71,8 @@
   <div class="yr">
     <div class="yr-label">2025<div class="yr-dot"></div></div>
     <div class="yr-items">
-<!-------------------------------------------------------------------------------------------------------------------------->
 
-     
-     <div class="card card-award">
+      <div class="card card-award">
         <img class="card-img" src="images/logo-termeer.png" alt="Termeer Institute">
         <div class="card-text">
           <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#4a1220; margin-bottom:4px;">Award</div>
@@ -88,7 +86,7 @@
         <div class="card-text">
           <div style="font-family:'Caveat',cursive; font-size:14px; font-weight:600; color:#0a66c2; margin-bottom:4px;">Media</div>
           <strong>IITM Shaastra Magazine</strong> — <a href="https://shaastramag.iitm.ac.in/special-feature/eyes-light">Eyes on the Light</a><br>
-          Feature article on optogenetics research and engineering light-sensitive proteins for therapeutic use.
+          Had a wonderful time speaking with Shaastra about my research on optogenetics — the science of using light to control neurons, and how we're engineering light-sensitive proteins for therapeutic applications beyond the brain. The piece covers our work on de-immunizing opsins and the path toward clinical translation in peripheral tissues.
         </div>
       </div>
 
