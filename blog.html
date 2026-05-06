@@ -13,9 +13,13 @@
   nav a { color: #e8d8d8; text-decoration: none; font-size: 15px; letter-spacing: 0.5px; }
   nav a:hover { color: #fff; }
   nav .name { font-size: 18px; font-weight: 700; }
-  .layout { max-width: 1100px; margin: 0 auto; padding: 90px 1rem 60px; display: flex; gap: 0; }
+  .layout { max-width: 1100px; margin: 0 auto; padding: 90px 1rem 60px; display: grid; grid-template-columns: 220px minmax(0,1fr) 240px; gap: 32px; }
   .sidebar { width: 220px; flex-shrink: 0; padding-right: 20px; border-right: 1px solid rgba(44,44,42,0.12); position: sticky; top: 90px; font-family: 'Caveat', cursive; }
   .sb-item { display: flex; align-items: center; gap: 9px; cursor: pointer; padding: 7px 10px; border-radius: 8px; font-size: 17px; color: #73726c; user-select: none; }
+  .aside { position: sticky; top: 90px; align-self: start; }
+  .aside a { display: block; margin-bottom: 16px; }
+  .aside a:last-child { margin-bottom: 0; }
+  .aside img { width: 100%; border-radius: 12px; display: block; border: 1px solid rgba(44,44,42,0.12); }
   .sb-item:hover { background: rgba(0,0,0,0.03); }
   .sb-item.active { background: rgba(0,0,0,0.05); font-weight: 700; color: #2c2c2a; }
   .sb-item.dim { opacity: 0.25; }
@@ -26,9 +30,10 @@
   .post-card:hover { opacity: 0.75; }
   #empty-state { display: none; padding: 60px 0; text-align: center; font-family: 'Caveat', cursive; font-size: 20px; color: #9c9a92; }
   @media (max-width: 700px) {
-    .layout { flex-direction: column; }
+    .layout { grid-template-columns: 1fr; }
     .sidebar { width: 100%; position: static; border-right: none; border-bottom: 1px solid rgba(44,44,42,0.12); padding: 0 0 12px; margin-bottom: 20px; flex-direction: column; }
     .content { padding-left: 0; }
+    .aside { position: static; width: 100%; margin-top: 24px; }
   }
 </style>
 </head>
@@ -64,20 +69,28 @@
   <!-------------------------------------------------------------------------------------------------------------- CONTENT: Post previews ------------------------------------------------------------------------------------------------------------------------------------------------------->
   <div class="content" id="content">
 
+    <!-- ★ PREVIEW: Mass General Brigham MESH Core 2026 ★ -->
+    <a class="post-card" data-cat="attendance" href="blog/202605-mesh.html">
+      <div style="font-family:'Caveat',cursive; font-size:15px; font-weight:600; color:#1a1a40; margin-bottom:4px;">In Attendance</div>
+      <div style="font-size:13px; color:#9c9a92; margin-bottom:8px;">May 4–5, 2026</div>
+      <div style="font-family:'Caveat',cursive; font-size:24px; font-weight:700; margin-bottom:8px;">Lessons from Mass General Brigham MESH Core 2026</div>
+      <div style="font-size:14px; color:#73726c; line-height:1.6;">Reflections on the Mass General Brigham MESH Core 2026 at Harvard, where AI, clinical workflow design, and healthcare startup strategy intersected in compelling ways.</div>
+    </a>
+
     <!-- ★ PREVIEW: Termeer Summit ★ -->
     <a class="post-card" data-cat="attendance" href="blog/202603-termeer-summit.html">
       <div style="font-family:'Caveat',cursive; font-size:15px; font-weight:600; color:#1a1a40; margin-bottom:4px;">In Attendance</div>
       <div style="font-size:13px; color:#9c9a92; margin-bottom:8px;">March 17, 2026</div>
       <div style="font-family:'Caveat',cursive; font-size:24px; font-weight:700; margin-bottom:8px;">Leadership Legacy: On the people who carry the work forward</div>
-      <div style="font-size:14px; color:#73726c; line-height:1.6;">I had the opportunity to attend the 2nd Annual Termeer Summit: CEOs for Cures, organized by the Termeer Institute. The event brought together an impressive lineup of biotech leaders, founders, and industry veterans...</div>
+      <div style="font-size:14px; color:#73726c; line-height:1.6;">I had the opportunity to attend the 2nd Annual Termeer Summit: CEOs for Cures, organized by the Termeer Institute. But what struck me most wasn't the programming, but rather the people. Reflections on leadership legacy and how Henri Termeer built a generation of people who understood what it meant to do work that mattered.</div>
     </a>
 
-    <!-- ★ PREVIEW: Termeer Summit ★ -->
+    <!-- ★ PREVIEW: Termeer Scholars ★ -->
     <a class="post-card" data-cat="attendance" href="blog/202512-termeer-workshop.html">
       <div style="font-family:'Caveat',cursive; font-size:15px; font-weight:600; color:#1a1a40; margin-bottom:4px;">In Attendance</div>
       <div style="font-size:13px; color:#9c9a92; margin-bottom:8px;">December 4, 2025</div>
       <div style="font-family:'Caveat',cursive; font-size:24px; font-weight:700; margin-bottom:8px;">Grounded</div>
-      <div style="font-size:14px; color:#73726c; line-height:1.6;">Termeer Scholars 2025 inaugral programming event at the Termeer Institute...</div>
+      <div style="font-size:14px; color:#73726c; line-height:1.6;">I had the privilege of joining the inaugural Termeer Scholars 2025 programming in Boston, which was a two-day event. The event featured immersive workshops and conversations designed to help academic researchers think seriously about translating their work toward patient impact.</div>
     </a>
 
    <!-------------------------------------------------------------------------------------------------------------- CONTENT: Post previews ------------------------------------------------------------------------------------------------------------------------------------------------------->
@@ -94,6 +107,18 @@
 
     <div id="empty-state">✎ Nothing here yet — stay tuned.</div>
   </div>
+
+  <aside class="aside">
+    <a href="blog/202605-mesh.html">
+      <img src="images/20260505-mesh.png" alt="Mass General Brigham MESH Core 2026">
+    </a>
+    <a href="blog/202603-termeer-summit.html">
+      <img src="images/202603-termeer-post.png" alt="Termeer Summit LinkedIn post image">
+    </a>
+    <a href="blog/202512-termeer-workshop.html">
+      <img src="images/202512-termeer-1.png" alt="Termeer Scholars 2025 image">
+    </a>
+  </aside>
 </div>
 
 <script>
